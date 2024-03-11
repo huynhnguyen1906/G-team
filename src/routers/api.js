@@ -1,64 +1,52 @@
-import { app } from "./firebase-config";
-import {
-	getFirestore,
-	collection,
-	getDocs,
-	addDoc,
-	query,
-	orderBy,
-	deleteDoc,
-	doc,
-	updateDoc,
-	getDoc,
-} from "firebase/firestore";
+const express = require("express");
+const router = express.Router();
+const {
+	fetchBookmarks,
+	addBookmark,
+	deleteBookmark,
+	updateBookmark,
+} = require("../controllers/apiControllers");
 
-const db = getFirestore(app);
-const bookmarksRef = collection(db, "bookmarks");
-
-export async function fetchBookmarks() {
-	const q = query(bookmarksRef, orderBy("createAt"));
+// GET all bookmarks
+router.get("/bookmarks", async (req, res) => {
 	try {
-		const querySnapshot = await getDocs(q);
-		const bookmarks = [];
-		querySnapshot.forEach((doc) => {
-			bookmarks.push({
-				id: doc.id,
-				data: doc.data(),
-			});
-		});
-		return bookmarks;
+		const bookmarks = await fetchBookmarks();
+		res.json(bookmarks);
 	} catch (error) {
-		console.error("Error getting documents: ", error);
-		throw error;
+		res.status(500).json({ message: error.message });
 	}
-}
+});
 
-export async function addBookmark(bookmarkData) {
+// POST a new bookmark
+router.post("/bookmarks", async (req, res) => {
 	try {
-		await addDoc(bookmarksRef, bookmarkData);
-		console.log("Document successfully written!");
+		await addBookmark(req.body);
+		res.status(201).send();
 	} catch (error) {
-		console.error("Error writing document: ", error);
-		throw error;
+		res.status(500).json({ message: error.message });
 	}
-}
+});
 
-export async function deleteBookmark(bookmarkId) {
+// DELETE a bookmark
+router.delete("/bookmarks/:id", async (req, res) => {
+	const id = req.params.id;
 	try {
-		await deleteDoc(doc(db, "bookmarks", bookmarkId));
-		console.log("Document successfully deleted!");
+		await deleteBookmark(id);
+		res.status(204).send();
 	} catch (error) {
-		console.error("Error deleting document: ", error);
-		throw error;
+		res.status(500).json({ message: error.message });
 	}
-}
+});
 
-export async function updateBookmark(bookmarkId, updatedData) {
+// PUT/UPDATE a bookmark
+router.put("/bookmarks/:id", async (req, res) => {
+	const id = req.params.id;
 	try {
-		await updateDoc(doc(db, "bookmarks", bookmarkId), updatedData);
-		console.log("Document successfully updated!");
+		await updateBookmark(id, req.body);
+		res.status(204).send();
 	} catch (error) {
-		console.error("Error updating document: ", error);
-		throw error;
+		res.status(500).json({ message: error.message });
 	}
-}
+});
+
+module.exports = router;
