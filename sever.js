@@ -1,8 +1,8 @@
 const express = require("express");
-
+require("dotenv").config();
 const app = express();
-const port = 8080;
-const hostname = "localhost";
+const port = process.env.PORT || 3000;
+const hostname = process.env.HOST_NAME;
 const configViewEngine = require("./src/config/viewEngine");
 const webRoutes = require("./src/routers/web");
 const apiRoutes = require("./src/routers/api");
