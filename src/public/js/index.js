@@ -15,7 +15,7 @@ form.addEventListener("submit", async (e) => {
 		createAt: new Date(),
 		description: descriptionValue || null,
 	};
-
+	console.log(bookmarkData);
 	try {
 		await fetch("/api/bookmarks", {
 			method: "POST",
@@ -35,12 +35,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 	try {
 		const response = await fetch("/api/bookmarks");
 		const bookmarks = await response.json();
-		bookmarks.forEach((bookmark) => {
+		bookmarks.forEach((bookmark, i) => {
 			const html = `
             <ul class="urlItem" data-id="${bookmark.id}"> 
-                <li class="title">${bookmark.data.title}</li>
+                <li class="title">${i + 1}. ${
+				bookmark.data.title
+			} <button class="delete bg-gray-500 w-14 h-8 text-white p-0 ml-5 rounded-lg">Delete</button><button class="edit bg-gray-500 w-14 h-8 text-white p-0 ml-5 rounded-lg">Edit</button></li>
                 <li class="itemUrl">
-                    <a class="url" href="${bookmark.data.url}">${
+                    <a class="url text-blue-500" href="${bookmark.data.url}">${
 				bookmark.data.url
 			}</a>
                 </li>
@@ -49,12 +51,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 										? `<li class="description">${bookmark.data.description}</li>`
 										: ""
 								}
-                <li><button class="delete" data-id="${
-									bookmark.id
-								}">Delete</button></li>
-                <li><button class="edit" data-id="${
-									bookmark.id
-								}">Edit</button></li>
             </ul>`;
 			urlList.insertAdjacentHTML("beforeend", html);
 		});
@@ -62,7 +58,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 		console.error("Error fetching bookmarks: ", error);
 	}
 });
-
 urlList.addEventListener("click", async (e) => {
 	if (e.target.classList.contains("delete")) {
 		const bookmarkId = e.target.getAttribute("data-id");

@@ -17,7 +17,6 @@ router.get("/bookmarks", async (req, res) => {
 	}
 });
 
-// POST a new bookmark
 router.post("/bookmarks", async (req, res) => {
 	try {
 		await addBookmark(req.body);

@@ -1,5 +1,5 @@
-import { app } from "./firebase-config";
-import {
+const { app } = require("../config/firebase-config");
+const {
 	getFirestore,
 	collection,
 	getDocs,
@@ -10,12 +10,12 @@ import {
 	doc,
 	updateDoc,
 	getDoc,
-} from "firebase/firestore";
+} = require("@firebase/firestore");
 
 const db = getFirestore(app);
 const bookmarksRef = collection(db, "bookmarks");
 
-export async function fetchBookmarks() {
+async function fetchBookmarks() {
 	const q = query(bookmarksRef, orderBy("createAt"));
 	try {
 		const querySnapshot = await getDocs(q);
@@ -33,7 +33,7 @@ export async function fetchBookmarks() {
 	}
 }
 
-export async function addBookmark(bookmarkData) {
+async function addBookmark(bookmarkData) {
 	try {
 		await addDoc(bookmarksRef, bookmarkData);
 		console.log("Document successfully written!");
@@ -43,7 +43,7 @@ export async function addBookmark(bookmarkData) {
 	}
 }
 
-export async function deleteBookmark(bookmarkId) {
+async function deleteBookmark(bookmarkId) {
 	try {
 		await deleteDoc(doc(db, "bookmarks", bookmarkId));
 		console.log("Document successfully deleted!");
@@ -53,7 +53,7 @@ export async function deleteBookmark(bookmarkId) {
 	}
 }
 
-export async function updateBookmark(bookmarkId, updatedData) {
+async function updateBookmark(bookmarkId, updatedData) {
 	try {
 		await updateDoc(doc(db, "bookmarks", bookmarkId), updatedData);
 		console.log("Document successfully updated!");
@@ -62,3 +62,9 @@ export async function updateBookmark(bookmarkId, updatedData) {
 		throw error;
 	}
 }
+module.exports = {
+	fetchBookmarks,
+	addBookmark,
+	deleteBookmark,
+	updateBookmark,
+};
