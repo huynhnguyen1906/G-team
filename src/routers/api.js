@@ -1,48 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const {
-	fetchBookmarks,
-	addBookmark,
-	deleteBookmark,
-	updateBookmark,
-} = require("../controllers/apiControllers");
+const { testApi } = require("../controllers/apiControllers");
 
 // GET all bookmarks
-router.get("/bookmarks", async (req, res) => {
+router.get("/test", async (req, res) => {
 	try {
-		const bookmarks = await fetchBookmarks();
-		res.json(bookmarks);
-	} catch (error) {
-		res.status(500).json({ message: error.message });
-	}
-});
-
-router.post("/bookmarks", async (req, res) => {
-	try {
-		await addBookmark(req.body);
-		res.status(201).send();
-	} catch (error) {
-		res.status(500).json({ message: error.message });
-	}
-});
-
-// DELETE a bookmark
-router.delete("/bookmarks/:id", async (req, res) => {
-	const id = req.params.id;
-	try {
-		await deleteBookmark(id);
-		res.status(204).send();
-	} catch (error) {
-		res.status(500).json({ message: error.message });
-	}
-});
-
-// PUT/UPDATE a bookmark
-router.put("/bookmarks/:id", async (req, res) => {
-	const id = req.params.id;
-	try {
-		await updateBookmark(id, req.body);
-		res.status(204).send();
+		const mes = await testApi();
+		res.json(mes);
 	} catch (error) {
 		res.status(500).json({ message: error.message });
 	}
