@@ -13,9 +13,8 @@ fetch("/api/firebase-config")
 				.signInWithPopup(provider)
 				.then(function (result) {
 					const user = result.user;
-					console.log("Login successful:", user);
-
 					sessionStorage.setItem("user", JSON.stringify(user));
+					window.location.href = "/home";
 				})
 				.catch(function (error) {
 					console.log(error);
