@@ -22,7 +22,6 @@ router.post("/upload", upload.single("image"), (req, res) => {
 		res.status(400).send("No file uploaded.");
 		return;
 	}
-	console.log(req.file);
 	const blob = bucket.file(req.file.originalname);
 	const blobStream = blob.createWriteStream();
 
