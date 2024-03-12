@@ -27,13 +27,13 @@ window.onload = function () {
                                     </div>
                                     <div class="name">${hobby.userName}<span>さん</span></div>
                                     <div class="desTitle">${hobby.title}</div>
-                                    <div class="des">${hobby.description}</div>
+                                    <div class="des1">${hobby.description}</div>
                                 </div>
                             </div>
                         </div>
                         <div class="bioDesCard">
                             <div class="title">${hobby.title}</div>
-                            <div class="des">${hobby.Description}</div>
+                            <div class="des2">${hobby.description}</div>
                         </div>
                     </div>
                     <div class="buttonBox">
@@ -42,26 +42,35 @@ window.onload = function () {
                     </div>
                 </div>
             `;
-				main.innerHTML += html;
+				const template = document.createElement("template");
+				template.innerHTML = html.trim();
+				const newElement = template.content.firstChild;
+
+				const des1 = newElement.querySelector(".des1");
+				if (des1.innerText.length > 70) {
+					des1.innerText = des1.innerText.slice(0, 70) + "...";
+				}
+
+				const desTitle = newElement.querySelector(".desTitle");
+				if (desTitle.innerText.length > 20) {
+					desTitle.innerText = desTitle.innerText.slice(0, 20) + "...";
+				}
+
+				const card = newElement.querySelector(".profileCard .card");
+				card.addEventListener("click", function () {
+					this.style.transform =
+						this.style.transform === "rotateY(180deg)"
+							? "rotateY(0)"
+							: "rotateY(180deg)";
+				});
+
+				const matchBtn = newElement.querySelector(".match");
+				matchBtn.addEventListener("click", function () {
+					window.location.href = "/chat-new";
+				});
+
+				main.appendChild(newElement);
 			});
 		})
 		.catch((error) => console.error("Error:", error));
 };
-
-const cards = document.querySelectorAll(".profileCard .card");
-cards.forEach(function (card) {
-	card.addEventListener("click", function () {
-		this.style.transform =
-			this.style.transform === "rotateY(180deg)"
-				? "rotateY(0)"
-				: "rotateY(180deg)";
-	});
-});
-
-const matchBtn = document.querySelectorAll(".match");
-
-matchBtn.forEach(function (btn) {
-	btn.addEventListener("click", function () {
-		window.location.href = "/chat-new";
-	});
-});
