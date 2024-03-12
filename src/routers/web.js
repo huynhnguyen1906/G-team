@@ -17,4 +17,10 @@ router.get("/profile", (req, res) => {
 	res.render("profile.ejs");
 });
 
+router.get("/create-profile", (req, res) => {
+	res.render("create-profile.ejs");
+});
+router.get("/notification", (req, res) => {
+	res.render("notification.ejs");
+});
 module.exports = router;
