@@ -17,13 +17,11 @@ const imageSelectText = document.querySelector(".image_select p");
 imageUpload.addEventListener("change", function (e) {
 	const reader = new FileReader();
 	reader.onload = function (e) {
-		// Remove the current image if it exists
 		const currentImage = imageSelect.querySelector("img");
 		if (currentImage) {
 			imageSelect.removeChild(currentImage);
 		}
 
-		// Add the new image
 		const img = document.createElement("img");
 		img.src = e.target.result;
 		imageSelect.appendChild(img);
