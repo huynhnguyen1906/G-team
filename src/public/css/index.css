@@ -159,9 +159,10 @@ input[type="password"] {
   align-items: center;
   justify-content: space-between;
 }
-
-.google {
+.google_all {
   position: relative;
+}
+.google {
   font-size: 13px;
   max-width: 170px;
   display: block;
@@ -179,11 +180,13 @@ input[type="password"] {
   z-index: 99;
   width: 29px;
   height: 29px;
-  bottom: 54px;
-  left: 30px;
+  top: 7px;
+  left: 5px;
+}
+.insta_all {
+  position: relative;
 }
 .insta {
-  position: relative;
   font-size: 13px;
   max-width: 170px;
   display: block;
@@ -198,7 +201,7 @@ input[type="password"] {
 
 .insta_logo {
   position: absolute;
-  bottom: 54px;
-  right: 150px;
-  width: 7.437%;
+  top: 7px;
+  left: 11px;
+  width: 29px;
 }
