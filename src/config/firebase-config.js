@@ -1,5 +1,6 @@
 // firebase-config.js
 const { initializeApp } = require("@firebase/app");
+const { getAuth } = require("@firebase/auth");
 require("dotenv").config();
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -14,4 +15,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-module.exports = { app };
+const auth = getAuth(app);
+
+module.exports = { app, auth, firebaseConfig };

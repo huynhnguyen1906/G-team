@@ -1,13 +1,24 @@
-console.log("Hello from index.js");
+const loginWithGoogleBtn = document.querySelector(".google_all");
+// Fetch Firebase configuration from server
+fetch("/api/firebase-config")
+	.then((response) => response.json())
+	.then((config) => {
+		firebase.initializeApp(config);
 
-async function fetchData() {
-	const response = await fetch("/api/test");
-	const data = await response.json();
+		var provider = new firebase.auth.GoogleAuthProvider();
 
-	const p = document.querySelector("p");
-	p.textContent = data;
-}
+		loginWithGoogleBtn.addEventListener("click", function () {
+			firebase
+				.auth()
+				.signInWithPopup(provider)
+				.then(function (result) {
+					const user = result.user;
+					console.log("Login successful:", user);
 
-fetchData().catch((error) => {
-	console.error("Error:", error);
-});
+					sessionStorage.setItem("user", JSON.stringify(user));
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+		});
+	});
