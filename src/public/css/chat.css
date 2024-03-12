@@ -165,6 +165,9 @@ footer nav ul li:nth-child(4) a i {
   display: flex;
   align-items: center;
   background: #627c9b;
+  position: fixed;
+  bottom: 80px;
+  left: 0;
 }
 input[type="text"] {
   width: 250px;
