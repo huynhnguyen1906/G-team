@@ -13,4 +13,8 @@ router.get("/home", (req, res) => {
 	res.render("home.ejs");
 });
 
+router.get("/profile", (req, res) => {
+	res.render("profile.ejs");
+});
+
 module.exports = router;
