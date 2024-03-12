@@ -32,5 +32,8 @@ router.get("/chat", (req, res) => {
 router.get("/chat-new", (req, res) => {
 	res.render("chat-new.ejs");
 });
+router.get("/upload-test", (req, res) => {
+	res.render("upload-test");
+});
 
 module.exports = router;
