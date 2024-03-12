@@ -28,4 +28,9 @@ router.get("/notification", (req, res) => {
 router.get("/chat", (req, res) => {
 	res.render("chat.ejs");
 });
+
+router.get("/chat-new", (req, res) => {
+	res.render("chat-new.ejs");
+});
+
 module.exports = router;

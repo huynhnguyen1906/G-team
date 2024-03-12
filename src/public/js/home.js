@@ -7,3 +7,11 @@ cards.forEach(function (card) {
 				: "rotateY(180deg)";
 	});
 });
+
+const matchBtn = document.querySelectorAll(".match");
+
+matchBtn.forEach(function (btn) {
+	btn.addEventListener("click", function () {
+		window.location.href = "/chat-new";
+	});
+});
