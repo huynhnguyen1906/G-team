@@ -5,4 +5,8 @@ router.get("/", (req, res) => {
 	res.render("index.ejs");
 });
 
+router.get("/signup", (req, res) => {
+	res.render("signup.ejs");
+});
+
 module.exports = router;
