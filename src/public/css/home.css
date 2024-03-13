@@ -175,6 +175,7 @@ img {
   font-style: normal;
   font-weight: 400;
   line-height: 2.2rem;
+  margin-top: -7px;
 }
 .name span {
   color: #d1d1d1;
@@ -259,7 +260,7 @@ img {
   text-align: center;
   font-size: 2rem;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 2.2rem;
   background-image: url("../images/matchButton.png");
   background-size: cover;
