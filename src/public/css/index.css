@@ -212,3 +212,12 @@ input[type="password"] {
   left: 11px;
   width: 29px;
 }
+.login_text {
+  margin-top: 15px;
+  text-align: center;
+  color: #fff;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 160%; /* 20.8px */
+}
