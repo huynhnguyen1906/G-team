@@ -39,7 +39,7 @@ fetch("/api/my-hobbies", {
 			template.innerHTML = html.trim();
 			profileBox.prepend(template.content.firstChild);
 			const text = document.querySelector(".text");
-			if (text.innerText.length > 50) {
+			if (text.innerText.length > 25) {
 				text.innerText = text.innerText.slice(0, 25) + "...";
 			}
 		});
