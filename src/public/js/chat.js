@@ -1,4 +1,6 @@
-document.querySelector("form").addEventListener("submit", function (event) {
+const form = document.querySelector("form");
+
+form.addEventListener("submit", function (event) {
 	event.preventDefault();
 
 	const input = document.querySelector(".textarea");
