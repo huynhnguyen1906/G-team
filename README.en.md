@@ -4,7 +4,7 @@
 
 <p align="center">
   <img src="./src/public/images/readme1.png" width="24%"  />
-  <img src="./src/public/images/readm2.png" width="24%"  />
+  <img src="./src/public/images/readme2.png" width="24%"  />
   <img src="./src/public/images/readme3.png" width="24%"  />
   <img src="./src/public/images/readme4.png" width="24%"  />
 </p>
